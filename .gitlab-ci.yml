@@ -2,5 +2,6 @@ push_to_github:
   stage: deploy
   tags:
     - shell
+    - osx
   script:
     - git push https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
