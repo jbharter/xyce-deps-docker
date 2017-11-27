@@ -29,3 +29,11 @@ RUN ./build-zlib.sh
 # Build HDF5
 COPY build-hdf5.sh .
 RUN ./build-hdf5.sh
+
+# Build netCDF
+COPY build-netcdf-c.sh .
+RUN ./build-netcdf-c.sh
+
+# Build Trilinos
+COPY build-trilinos.sh .
+RUN ./build-trilinos.sh
