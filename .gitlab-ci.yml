@@ -3,5 +3,6 @@ push_to_github:
   tags:
     - shell
   script:
-    #- git remote add github https://jbharter:$GHTOKEN@github.com/jbharter/xyce-deps-docker.git
+    - git remote remove github
+    - git remote add github https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git
     - git push github master
