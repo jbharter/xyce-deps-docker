@@ -5,4 +5,4 @@ push_to_github:
   script:
     - git remote remove github
     - git remote add github https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git
-    - git push github master
+    - git push -f github master
