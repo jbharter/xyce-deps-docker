@@ -16,7 +16,7 @@ RUN apt-get install -y libopenmpi-dev openmpi-bin libmetis-dev libparmetis-dev
 # trilinos_deps
 RUN apt-get install -y liblapack-dev libboost-all-dev
 # misc_deps
-RUN apt-get install -y autoconf libcurl4-openssl-dev
+RUN apt-get install -y autoconf automake libcurl4-openssl-dev
 
 # Build cmake 3.9.x
 COPY build-cmake.sh .
@@ -25,3 +25,7 @@ RUN ./build-cmake.sh
 # Build ZLIB
 COPY build-zlib.sh .
 RUN ./build-zlib.sh
+
+# Build HDF5
+COPY build-hdf5.sh .
+RUN ./build-hdf5.sh
