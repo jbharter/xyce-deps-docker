@@ -19,21 +19,9 @@ RUN apt-get install -y liblapack-dev libboost-all-dev
 RUN apt-get install -y autoconf libcurl4-openssl-dev
 
 # Build cmake 3.9.x
-RUN wget https://cmake.org/files/v3.9/cmake-3.9.1.tar.gz
-RUN tar -xzvf cmake-3.9.1.tar.gz
-RUN cd cmake-3.9.1/
-RUN ./bootstrap
-RUN make
-RUN make install
-RUN cd ../
+COPY build-cmake.sh .
+RUN ./build-cmake.sh
 
 # Build ZLIB
-RUN wget http://www.zlib.net/zlib-1.2.11.tar.gz
-RUN tar -xf zlib-1.2.11.tar.gz
-RUN cd zlib-1.2.11
-RUN ./configure --prefix=/usr/local
-RUN make check
-RUN make install
-RUN cd ../
-
-
+COPY build-zlib.sh .
+RUN ./build-zlib.sh
