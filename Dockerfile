@@ -16,7 +16,7 @@ RUN apt-get install -y libopenmpi-dev openmpi-bin libmetis-dev libparmetis-dev
 # trilinos_deps
 RUN apt-get install -y liblapack-dev libboost-all-dev
 # misc_deps
-RUN apt-get install -y autoconf automake libcurl4-openssl-dev shtool doxygen
+RUN apt-get install -y autoconf automake libcurl4-openssl-dev shtool doxygen graphviz
 
 # Build cmake 3.9.x
 COPY build-cmake.sh .
@@ -35,6 +35,5 @@ COPY build-netcdf-c.sh .
 RUN ./build-netcdf-c.sh
 
 # Build Trilinos
-COPY trilinos-12.6.3-Source.tar.bz2 .
 COPY build-trilinos.sh .
 RUN ./build-trilinos.sh
