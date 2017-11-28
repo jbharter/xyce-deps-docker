@@ -4,4 +4,5 @@ push_to_github:
     - shell
     - osx
   script:
+    - git pull https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git
     - git push https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
