@@ -2,7 +2,7 @@
 
 DIR=$(pwd)
 wget https://github.com/trilinos/Trilinos/archive/trilinos-release-12-6-3.tar.gz
-tar -xf Trilinos-trilinos-release-12-6-3.tar.gz
+tar -xf trilinos-release-12-6-3.tar.gz
 cd Trilinos-trilinos-release-12-6-3
 
 #-D TPL_ENABLE_MPI=ON \
