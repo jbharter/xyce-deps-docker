@@ -1,7 +1,3 @@
-image: ubuntu:trusty
-
-before_script:
-  - apt-get -y install docker
 
 variables:
   GIT_STRATEGY: "clone"
