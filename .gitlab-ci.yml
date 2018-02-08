@@ -7,5 +7,6 @@ push_to_github:
   tags:
     - docker
   script:
-    - git pull
-    - git push -f https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
+    - docker build .
+    #- git pull
+    #- git push -f https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
