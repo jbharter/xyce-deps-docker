@@ -5,7 +5,7 @@ variables:
 push_to_github: 
   stage: deploy
   tags:
-    - osx
+    - docker
   script:
     - docker build .
     #- git pull
