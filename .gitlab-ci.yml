@@ -8,8 +8,6 @@ variables:
 
 push_to_github: 
   stage: deploy
-  tags:
-    - docker
   script:
     - docker build .
     #- git pull
