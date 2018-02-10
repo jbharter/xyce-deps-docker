@@ -5,6 +5,7 @@ services:
 variables:
   GIT_STRATEGY: "clone"
   GIT_CHECKOUT: "true"
+  DOCKER_HOST: tcp://localhost:2375
 
 push_to_github: 
   stage: deploy
