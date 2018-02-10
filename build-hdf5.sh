@@ -6,6 +6,6 @@ cd hdf5
 autoreconf --install
 autoconf
 CC=mpicc ./configure --with-zlib=/usr/local --prefix=/usr/local --enable-parallel
-make
+make -j4
 make install
 cd $DIR

@@ -16,7 +16,7 @@ RUN apt-get install -y libopenmpi-dev openmpi-bin libmetis-dev libparmetis-dev
 # trilinos_deps
 RUN apt-get install -y liblapack-dev libboost-all-dev
 # misc_deps
-RUN apt-get install -y autoconf automake libcurl4-openssl-dev shtool doxygen graphviz
+RUN apt-get install -y autoconf automake libcurl4-openssl-dev shtool doxygen graphviz libsuitesparse-dev
 
 # Build cmake 3.9.x
 COPY build-cmake.sh .
@@ -31,9 +31,26 @@ COPY build-hdf5.sh .
 RUN ./build-hdf5.sh
 
 # Build netCDF
+COPY v4.5.0.tar.gz .
 COPY build-netcdf-c.sh .
 RUN ./build-netcdf-c.sh
 
-# Build Trilinos
-COPY build-trilinos.sh .
-RUN ./build-trilinos.sh
+# Build Trilinos Serial
+COPY trilinos-release-12-12-1.tar.gz .
+COPY build-trilinos-serial.sh .
+RUN ./build-trilinos-serial.sh
+
+# Build Trilinos Parallel
+COPY trilinos-release-12-12-1.tar.gz .
+COPY build-trilinos-parallel.sh .
+RUN ./build-trilinos-parallel.sh
+
+# Build Xyce Serial
+COPY Xyce-6.8.tar.gz .
+COPY build-xyce-serial.sh .
+RUN ./build-xyce-serial.sh
+
+# Build Xyce Parallel
+COPY Xyce-6.8.tar.gz .
+COPY build-xyce-parallel.sh .
+RUN ./build-xyce-parallel.sh
