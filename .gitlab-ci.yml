@@ -12,10 +12,16 @@ variables:
   DOCKER_HOST: tcp://localhost:2375
   
 stages:
+  - prep
   - build
   - test
   - deploy
-  
+
+fetch_repo:
+  stage: prep
+  script:
+    - docker pull "$CI_REGISTRY_NAME"
+
 build-master:
   stage: build
   script:
