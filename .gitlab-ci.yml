@@ -6,10 +6,27 @@ variables:
   GIT_STRATEGY: "clone"
   GIT_CHECKOUT: "true"
   DOCKER_HOST: tcp://localhost:2375
+  
+stages:
+  - build_dependencies
+  - build_xyce
+  - test
+  - deploy
+
+build_deps:
+  stage: build_dependencies
+  script:
+    - execute-script-for-job1
+    - apt-get -y update
+    - apt-get install -y software-properties-common wget
+    - add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty multiverse"
+    - apt-get -y update
+    - apt-get -y upgrade
+    - apt-get install -y python gcc g++ gfortran make libsuitesparse-metis-dev git
 
 push_to_github: 
   stage: deploy
   script:
-    - docker build .
+    #- docker build .
     #- git pull
     #- git push -f https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
