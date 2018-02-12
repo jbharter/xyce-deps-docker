@@ -31,26 +31,25 @@ COPY build-hdf5.sh .
 RUN ./build-hdf5.sh
 
 # Build netCDF
-COPY v4.5.0.tar.gz .
 COPY build-netcdf-c.sh .
 RUN ./build-netcdf-c.sh
 
 # Build Trilinos Serial
-COPY trilinos-release-12-12-1.tar.gz .
-COPY build-trilinos-serial.sh .
-RUN ./build-trilinos-serial.sh
+#COPY trilinos-release-12-12-1.tar.gz .
+#COPY build-trilinos-serial.sh .
+#RUN ./build-trilinos-serial.sh
 
 # Build Trilinos Parallel
-COPY trilinos-release-12-12-1.tar.gz .
-COPY build-trilinos-parallel.sh .
-RUN ./build-trilinos-parallel.sh
+#COPY trilinos-release-12-12-1.tar.gz .
+#COPY build-trilinos-parallel.sh .
+#RUN ./build-trilinos-parallel.sh
 
 # Build Xyce Serial
-COPY Xyce-6.8.tar.gz .
-COPY build-xyce-serial.sh .
-RUN ./build-xyce-serial.sh
+#COPY Xyce-6.8.tar.gz .
+#COPY build-xyce-serial.sh .
+#RUN ./build-xyce-serial.sh
 
 # Build Xyce Parallel
-COPY Xyce-6.8.tar.gz .
-COPY build-xyce-parallel.sh .
-RUN ./build-xyce-parallel.sh
+#COPY Xyce-6.8.tar.gz .
+#COPY build-xyce-parallel.sh .
+#RUN ./build-xyce-parallel.sh
