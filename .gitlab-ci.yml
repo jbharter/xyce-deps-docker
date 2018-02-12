@@ -43,7 +43,7 @@ build_hdf5:
 build_netcdf:
   stage: build_dependencies
   script:
-    - ./build-nedcdf-c.sh
+    - ./build-netcdf-c.sh
     
 build_trilinos_serial:
   stage: build_trilinos
