@@ -35,14 +35,15 @@ COPY build-netcdf-c.sh .
 RUN ./build-netcdf-c.sh
 
 # Build Trilinos Serial
+RUN wget https://github.com/trilinos/Trilinos/archive/trilinos-release-12-12-1.tar.gz
 #COPY trilinos-release-12-12-1.tar.gz .
-#COPY build-trilinos-serial.sh .
-#RUN ./build-trilinos-serial.sh
+COPY build-trilinos-serial.sh .
+RUN ./build-trilinos-serial.sh
 
 # Build Trilinos Parallel
 #COPY trilinos-release-12-12-1.tar.gz .
-#COPY build-trilinos-parallel.sh .
-#RUN ./build-trilinos-parallel.sh
+COPY build-trilinos-parallel.sh .
+RUN ./build-trilinos-parallel.sh
 
 # Build Xyce Serial
 #COPY Xyce-6.8.tar.gz .
