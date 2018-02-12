@@ -1,6 +1,6 @@
-image: docker:latest
-services:
-  - docker:dind
+image: ubuntu:trusty
+#services:
+#  - docker:dind
 
 variables:
   GIT_STRATEGY: "clone"
