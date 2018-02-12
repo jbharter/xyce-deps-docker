@@ -1,6 +1,6 @@
-image: ubuntu:trusty
-#services:
-#  - docker:dind
+image: docker:latest
+services:
+ - docker:dind
 
 variables:
   GIT_STRATEGY: "clone"
@@ -8,55 +8,15 @@ variables:
   DOCKER_HOST: tcp://localhost:2375
   
 stages:
-  - standard_dependencies
-  - build_dependencies
-  - build_trilinos
-  - build_xyce
+  - build
   - test
   - deploy
 
-get_packages:
-  stage: standard_dependencies
+build_dockerimage:
+  stage: build
   script:
-    - apt-get -y update
-    - apt-get install -y software-properties-common wget
-    - add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty multiverse"
-    - apt-get -y update
-    - apt-get -y upgrade
-    - apt-get install -y python gcc g++ gfortran make libsuitesparse-metis-dev git
-    - apt-get install -y bison flex libfftw3-dev libblas-dev libtool
-    - apt-get install -y libopenmpi-dev openmpi-bin libmetis-dev libparmetis-dev
-    - apt-get install -y liblapack-dev libboost-all-dev
-    - apt-get install -y autoconf automake libcurl4-openssl-dev shtool doxygen graphviz libsuitesparse-dev
-    - ./build-cmake.sh
-
-build_zlib:
-  stage: build_dependencies
-  script:
-    - ./build-zlib.sh
+    - docker build .
     
-build_hdf5:
-  stage: build_dependencies
-  script:
-    - ./build-hdf5.sh
-    
-build_netcdf:
-  stage: build_dependencies
-  script:
-    - ./build-netcdf-c.sh
-    
-build_trilinos_serial:
-  stage: build_trilinos
-  script:
-    - wget https://github.com/trilinos/Trilinos/archive/trilinos-release-12-12-1.tar.gz
-    - ./build-trilinos-serial.sh
-
-build_trilinos_parallel:
-  stage: build_trilinos
-  script:
-    - wget https://github.com/trilinos/Trilinos/archive/trilinos-release-12-12-1.tar.gz
-    - ./build-trilinos-parallel.sh
-
 push_to_github: 
   stage: deploy
   script:
