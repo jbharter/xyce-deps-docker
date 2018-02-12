@@ -2,7 +2,7 @@
 
 DIR=$(pwd)
 #git clone https://github.com/Unidata/netcdf-c.git
-#wget https://github.com/Unidata/netcdf-c/archive/v4.5.0.tar.gz
+wget https://github.com/Unidata/netcdf-c/archive/v4.5.0.tar.gz
 tar -xf v4.5.0.tar.gz
 cd netcdf-c-4.5.0
 #mkdir target
