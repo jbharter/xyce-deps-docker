@@ -27,6 +27,7 @@ build_deps:
 push_to_github: 
   stage: deploy
   script:
+    - date
     #- docker build .
     #- git pull
     #- git push -f https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
