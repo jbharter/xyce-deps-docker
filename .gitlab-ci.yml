@@ -16,7 +16,6 @@ stages:
 build_deps:
   stage: build_dependencies
   script:
-    - execute-script-for-job1
     - apt-get -y update
     - apt-get install -y software-properties-common wget
     - add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty multiverse"
