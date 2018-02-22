@@ -1,11 +1,66 @@
+image: docker:latest
+
+services:
+ - docker:dind
+
 variables:
   GIT_STRATEGY: "clone"
   GIT_CHECKOUT: "true"
+  CI_REGISTRY_USER: "jbharter"
+  CI_REGISTRY: "index.docker.io"
+  CI_REGISTRY_IMAGE: "index.docker.io/jbharter/xyce-deps-docker"
+  DOCKER_HOST: tcp://localhost:2375
+  
+stages:
+  - prep
+  - build
+  - test
+  - deploy
 
-push_to_github: 
-  stage: deploy
-  tags:
-    - shell
-    - osx
+fetch_repo:
+  stage: prep
   script:
-    - git push -f https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master
+    - docker pull "$CI_REGISTRY_IMAGE"
+
+build-master:
+  stage: build
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+  only:
+    - master
+
+build:
+  stage: build
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+  except:
+    - master
+
+deploy-master:
+  stage: deploy
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE"
+  only:
+    - master
+
+deploy-dev:
+  stage: deploy
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  only:
+    - develop
+
+# build_dockerimage:
+#   stage: build
+#   script:
+#     - docker build .
+    
+# push_to_github: 
+#   stage: deploy
+#   script:
+#     - date
+    #- docker build .
+    #- git pull
+    #- git push -f https://jbharter:$GH_TOKEN@github.com/jbharter/xyce-deps-docker.git master

@@ -9,6 +9,7 @@ cd netcdf-c-4.5.0
 #cd target
 #cmake ../
 CC=mpicc CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib ./configure --prefix=/usr/local
+make -j4
 make install
 
 cd $DIR
