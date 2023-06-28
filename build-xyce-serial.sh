@@ -2,8 +2,8 @@
 
 DIR=$(pwd)
 
-tar -xf Xyce-6.8.tar.gz
-cd Xyce-6.8
+tar -xf Xyce-7.6.0.tar.gz
+cd Xyce-7.6.0
 
 mkdir build
 cd build

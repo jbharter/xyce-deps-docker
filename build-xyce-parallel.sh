@@ -2,10 +2,12 @@
 
 DIR=$(pwd)
 
-tar -xf Xyce-6.8.tar.gz
-cd Xyce-6.8
+tar -xf Xyce-Release-7.6.0.tar.gz
+cd Xyce-Release-7.6.0
 
-mkdir build
+./bootstrap
+
+mkdir -p build
 cd build
 rm -rf *
 
@@ -16,7 +18,7 @@ CPPFLAGS="-I/usr/include/suitesparse" \
 --enable-mpi \
 CC=/usr/bin/mpicc \
 CXX=/usr/bin/mpic++ \
-F77=/usr/bin/mpif77
+F77=/usr/bin/mpif77 \
 --prefix=/usr/local/bin/xyce-parallel
 
 make -j2
