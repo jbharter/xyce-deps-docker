@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 wget http://www.zlib.net/zlib-1.2.11.tar.gz
 tar -xf zlib-1.2.11.tar.gz

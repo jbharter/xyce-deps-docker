@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 DIR=$(pwd)
 git clone -b 1.10/master --single-branch https://bitbucket.hdfgroup.org/scm/hdffv/hdf5.git

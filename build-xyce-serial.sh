@@ -1,23 +1,27 @@
 #!/bin/bash
+set -e
 
 DIR=$(pwd)
 
-tar -xf Xyce-7.6.0.tar.gz
-cd Xyce-7.6.0
+tar -xf Xyce-Release-7.6.0.tar.gz
+cd Xyce-Release-7.6.0
 
+./bootstrap 
+
+rm -rf build
 mkdir build
 cd build
-rm -rf *
 
 ../configure \
 ARCHDIR=$HOME/XyceLibs/Serial \
 CXXFLAGS="-O3 -std=c++11" \
-CPPFLAGS="-I/usr/include/suitesparse" \
+CPPFLAGS="-I/usr/include/suitesparse -I/usr/lib/xyce/serial/include" \
+LDFLAGS="-L/usr/lib/xyce/serial/lib" \
 CC=/usr/bin/gcc \
 CXX=/usr/bin/g++ \
 F77=/usr/bin/gfortran \
---prefix=/usr/local/bin/xyce-serial
+--prefix=/usr/lib/xyce-serial
 
-make -j2
+make -j4
 make install
 cd $DIR

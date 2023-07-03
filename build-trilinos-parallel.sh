@@ -1,11 +1,12 @@
 #!/bin/bash
+set -e 
 
 DIR=$(pwd)
 #wget https://github.com/trilinos/Trilinos/archive/trilinos-release-12-6-3.tar.gz
 tar -xf trilinos-release-12-12-1.tar.gz
 cd Trilinos-trilinos-release-12-12-1
 
-
+rm -rf build
 mkdir build
 cd build
 
@@ -18,7 +19,7 @@ cmake \
 -DCMAKE_CXX_FLAGS="-O3 -fPIC" \
 -DCMAKE_C_FLAGS="-O3 -fPIC" \
 -DCMAKE_Fortran_FLAGS="-O3 -fPIC" \
--DCMAKE_INSTALL_PREFIX=$HOME/XyceLibs/Parallel \
+-DCMAKE_INSTALL_PREFIX=/usr/lib/xyce/parallel \
 -DCMAKE_MAKE_PROGRAM="make" \
 -DTrilinos_ENABLE_NOX=ON \
   -DNOX_ENABLE_LOCA=ON \
