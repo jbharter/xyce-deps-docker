@@ -20,7 +20,7 @@ LDFLAGS="-L/usr/lib/xyce/parallel/lib" \
 CC=/usr/bin/mpicc \
 CXX=/usr/bin/mpic++ \
 F77=/usr/bin/mpif77 \
---prefix=/usr/lib/xyce-parallel
+--prefix=/usr/lib/xyce/parallel
 
 make -j4
 make install

@@ -39,3 +39,11 @@ COPY build-xyce-parallel.sh .
 RUN ./build-xyce-parallel.sh
 
 RUN rm Xyce-Release-7.6.0.tar.gz && rm -rf Xyce-Release-7.6.0
+
+# Symlinks for parallel and serial versions
+RUN ln -s /usr/lib/xyce/parallel/bin/Xyce /usr/bin/Xyce-parallel && \
+    ln -s  /usr/lib/xyce/serial/bin/Xyce /usr/bin/Xyce-serial
+
+# set parallel as default
+RUN update-alternatives --install /usr/bin/Xyce Xyce /usr/bin/Xyce-serial 1
+RUN update-alternatives --install /usr/bin/Xyce Xyce /usr/bin/Xyce-parallel 2

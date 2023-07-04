@@ -13,14 +13,13 @@ mkdir build
 cd build
 
 ../configure \
-ARCHDIR=$HOME/XyceLibs/Serial \
 CXXFLAGS="-O3 -std=c++11" \
 CPPFLAGS="-I/usr/include/suitesparse -I/usr/lib/xyce/serial/include" \
 LDFLAGS="-L/usr/lib/xyce/serial/lib" \
 CC=/usr/bin/gcc \
 CXX=/usr/bin/g++ \
 F77=/usr/bin/gfortran \
---prefix=/usr/lib/xyce-serial
+--prefix=/usr/lib/xyce/serial
 
 make -j4
 make install
