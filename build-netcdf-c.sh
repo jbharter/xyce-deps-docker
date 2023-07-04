@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 DIR=$(pwd)
 #git clone https://github.com/Unidata/netcdf-c.git
@@ -8,7 +9,7 @@ cd netcdf-c-4.5.0
 #mkdir target
 #cd target
 #cmake ../
-CC=mpicc CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib ./configure --prefix=/usr/local
+CC=mpicc ./configure --prefix=/usr/local
 make -j4
 make install
 

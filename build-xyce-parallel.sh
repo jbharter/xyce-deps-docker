@@ -1,24 +1,27 @@
 #!/bin/bash
+set -e
 
 DIR=$(pwd)
 
-tar -xf Xyce-6.8.tar.gz
-cd Xyce-6.8
+tar -xf Xyce-Release-7.6.0.tar.gz
+cd Xyce-Release-7.6.0
 
+./bootstrap
+
+rm -rf build
 mkdir build
 cd build
-rm -rf *
 
 ../configure \
-ARCHDIR=$HOME/XyceLibs/Parallel \
 CXXFLAGS="-O3 -std=c++11" \
-CPPFLAGS="-I/usr/include/suitesparse" \
+CPPFLAGS="-I/usr/include/suitesparse -I/usr/lib/xyce/parallel/include" \
+LDFLAGS="-L/usr/lib/xyce/parallel/lib" \
 --enable-mpi \
 CC=/usr/bin/mpicc \
 CXX=/usr/bin/mpic++ \
-F77=/usr/bin/mpif77
---prefix=/usr/local/bin/xyce-parallel
+F77=/usr/bin/mpif77 \
+--prefix=/usr/lib/xyce/parallel
 
-make -j2
+make -j4
 make install
 cd $DIR
